@@ -3,7 +3,7 @@
   import '../app.css';
 </script>
 
-<div class="flex min-h-screen">
+<div class="flex h-screen">
   <!-- <aside class="w-56 shrink-0"> -->
   <!--   <Navigation /> -->
   <!-- </aside> -->

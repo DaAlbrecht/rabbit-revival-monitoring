@@ -1,8 +1,7 @@
 <script>
   import Messages from './Messages/Messages.svelte';
-  import GridItem from '$lib/components/GridItem.svelte';
-  import Number from '$lib/components/Number.svelte';
   import Starfield from './Starfield/Starfield.svelte';
+  import Stats from './Stats.svelte';
 </script>
 
 <svelte:head>
@@ -13,36 +12,16 @@
 <Starfield />
 <section class="h-full text-neutral-300 dark:text-neutral-200">
   <div class="flex h-full flex-col text-white transition duration-200 dark:text-neutral-200">
-    <div class="flex h-[52px] border-b border-neutral-50 dark:border-neutral-700">
-      <p>Queue</p>
+    <div class="flex h-[52px]">
+      <p>RabbitRevival - Monitoring / V1.0</p>
     </div>
     <div class="mt-4 grow overflow-x-auto">
       <div class="h-full overflow-hidden">
-        <div class="grid h-full grid-cols-3 grid-rows-4 gap-4">
-          <div>
-            <GridItem title="Publishers">
-              <Number number="2" />
-            </GridItem>
+        <div class="flex h-full flex-col gap-4">
+          <div class="grid h-[250px] grid-cols-3 grid-rows-2 gap-4">
+            <Stats />
           </div>
-          <div>
-            <GridItem title="Consumers">
-              <Number number="2" />
-            </GridItem>
-          </div>
-          <div>
-            <GridItem title="System State">
-              <div
-                class="absolute inset-0 flex items-center justify-center pb-[25px] text-6xl font-semibold text-green-500"
-              >
-                Online
-              </div>
-            </GridItem>
-          </div>
-          <div class="col-span-3 row-span-3">
-            <GridItem title="Messages">
-              <Messages />
-            </GridItem>
-          </div>
+          <Messages />
         </div>
       </div>
     </div>
