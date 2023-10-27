@@ -10,7 +10,7 @@
   <circle
     {cx}
     {cy}
-    r={1}
+    r={0.5}
     style={`transform-origin: ${cx / 16}rem ${cy / 16}rem; opacity: ${
       dim ? 0.2 : 1
     }; transform: scale(${dim ? 1 : 1.2});`}

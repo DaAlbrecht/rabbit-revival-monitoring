@@ -16,6 +16,6 @@
   fill="rgba(255, 255, 255, 0.02)"
   d={`M ${points.join('L')}`}
 />
-{#each uniquePoints as point, pointIndex (pointIndex)}
-  <Star {...point} {blurId} key={pointIndex} />
+{#each uniquePoints as [cx, cy], pointIndex (pointIndex)}
+  <Star {cx} {cy} dim={false} blur={false} {blurId} />
 {/each}
