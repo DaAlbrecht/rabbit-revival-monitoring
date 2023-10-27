@@ -14,7 +14,7 @@
 <section class="h-full text-neutral-300 dark:text-neutral-200">
   <div class="flex h-full flex-col text-white transition duration-200 dark:text-neutral-200">
     <div class="flex h-[52px] border-b border-neutral-50 dark:border-neutral-700">
-      <p>Dashboard</p>
+      <p>Queue</p>
     </div>
     <div class="mt-4 grow overflow-x-auto">
       <div class="h-full overflow-hidden">
