@@ -71,9 +71,8 @@
   ];
 </script>
 
-<div class="py-10">
-  <h2 class="px-4 text-base font-semibold leading-7 text-white sm:px-6 lg:px-8">Latest activity</h2>
-  <table class="mt-6 w-full whitespace-nowrap text-left">
+<div>
+  <table class="mt-2 w-full whitespace-nowrap text-left">
     <colgroup>
       <col class="w-full sm:w-4/12" />
       <col class="lg:w-4/12" />
