@@ -1,6 +1,5 @@
 <script>
   import Messages from './Messages/Messages.svelte';
-  import Starfield from './Starfield/Starfield.svelte';
   import Stats from './Stats.svelte';
 </script>
 
@@ -9,7 +8,6 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<Starfield />
 <section class="h-full text-neutral-300 dark:text-neutral-200">
   <div class="flex h-full flex-col text-white transition duration-200 dark:text-neutral-200">
     <div class="flex h-[52px]">
