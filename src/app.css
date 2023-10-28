@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .scrollbar-styled {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.slate.700') theme('colors.sky.400');
+  }
+
+  .scrollbar-styled::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .scrollbar-styled::-webkit-scrollbar-thumb {
+    @apply bg-slate-400;
+  }
+  .scrollbar-styled::-webkit-scrollbar-track {
+    @apply bg-slate-700;
+  }
+  .scrollbar-styled::-webkit-scrollbar-button {
+    @apply bg-slate-400;
+  }
+  .scrollbar-styled::-webkit-scrollbar-button:start {
+    @apply rounded-t;
+  }
+  .scrollbar-styled::-webkit-scrollbar-button:end {
+    @apply rounded-b;
+  }
+}
