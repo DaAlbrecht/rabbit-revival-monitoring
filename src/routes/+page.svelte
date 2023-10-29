@@ -40,6 +40,9 @@
       }
     }))
   );
+
+  $: failedMessages = Math.round($messagesQuery.data?.length / 10);
+  $: successRate = 100 - Math.round((failedMessages / $messagesQuery.data?.length) * 100);
 </script>
 
 <svelte:head>
@@ -73,6 +76,8 @@
             <Stats
               data={$query.isSuccess ? $query.data : null}
               queue={selectedQueue}
+              {failedMessages}
+              {successRate}
               error={$query.isError ? $query.error.message : null}
               loading={$query.isLoading}
             />

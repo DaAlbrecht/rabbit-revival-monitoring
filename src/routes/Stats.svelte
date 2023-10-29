@@ -5,6 +5,8 @@
   export let error;
   export let data;
   export let queue;
+  export let failedMessages = 0;
+  export let successRate = 100;
 </script>
 
 <div>
@@ -34,12 +36,12 @@
 </div>
 <div>
   <GridItem title="Failed messages" {loading} {error}>
-    <Number type="error" number={0} />
+    <Number type="error" number={failedMessages} />
   </GridItem>
 </div>
 <div>
   <GridItem title="Success rate" {loading} {error}>
-    <Number number={100} sign="%" />
+    <Number number={successRate} sign="%" />
   </GridItem>
 </div>
 <div>
