@@ -24,3 +24,9 @@ export const GET: RequestHandler = async ({ url }) => {
   const messages = await revivalFetch(`list?queue=${queue}`);
   return new Response(JSON.stringify(messages.reverse()));
 };
+
+export const POST: RequestHandler = async ({ url }) => {
+  const queue = url.searchParams.get('queue') ?? 'bar';
+  const messages = await revivalFetch(`list?queue=${queue}`);
+  return new Response(JSON.stringify(messages.reverse()));
+};

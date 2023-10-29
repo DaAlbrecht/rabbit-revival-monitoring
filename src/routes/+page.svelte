@@ -8,7 +8,7 @@
   export let data: PageData;
   let selectedQueue = data.queue.name;
 
-  const intervalMs = writable(5000);
+  const intervalMs = writable(7000);
 
   const query = createQuery(
     derived(intervalMs, ($intervalMs) => ({
@@ -19,8 +19,8 @@
           intervalMs.set(10000);
           throw new Error('Metrics failed');
         }
-        if ($intervalMs !== 5000) {
-          intervalMs.set(5000);
+        if ($intervalMs !== 7000) {
+          intervalMs.set(7000);
         }
         return response.json();
       },
@@ -34,10 +34,15 @@
       queryFn: async () => {
         const response = await fetch(`/api/messages?queue=${data.queue.name}`);
         if (!response.ok) {
+          intervalMs.set(10000);
           throw new Error('Metrics failed');
         }
+        if ($intervalMs !== 7000) {
+          intervalMs.set(7000);
+        }
         return response.json();
-      }
+      },
+      refetchInterval: $intervalMs
     }))
   );
 
