@@ -1,0 +1,28 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq
+    ports:
+      - "5552:5552"
+      - "5672:5672"
+      - "15672:15672"
+
+  demo-publisher:
+    image: ghcr.io/daalbrecht/demo-publisher:main
+    container_name: demo-publisher
+    environment:
+      - AMQP_HOST=rabbitmq
+      - AMQP_QUEUE_NAMES=foo,demo,replay,bar,foobar
+    ports:
+      - "3005:3000"
+
+  rabbit-revival:
+    image: ghcr.io/daalbrecht/rabbit-revival:main
+    container_name: rabbit-revival
+    ports:
+      - "3002:3000"
+    environment:
+      - AMQP_TRANSACTION_HEADER=x-stream-transaction-id
+      - AMQP_HOST=rabbitmq
+

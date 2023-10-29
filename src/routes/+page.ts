@@ -1,3 +1,16 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+import type { PageLoad } from './$types';
+
+export const load: PageLoad = async ({ parent, fetch }) => {
+  const { queryClient } = await parent();
+
+  // You need to use the SvelteKit fetch function here
+  await queryClient.prefetchQuery({
+    queryKey: ['overview'],
+    queryFn: async () => {
+      const response = await fetch('/api/metrics');
+      if (response.ok) {
+        return response.json();
+      }
+    }
+  });
+};

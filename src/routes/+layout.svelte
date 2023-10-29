@@ -1,6 +1,10 @@
-<script>
+<script lang="ts">
   import Navigation from './Navigation.svelte';
   import '../app.css';
+  import { QueryClientProvider } from '@tanstack/svelte-query';
+  import type { LayoutData } from './$types';
+
+  export let data: LayoutData;
 </script>
 
 <div class="flex h-screen">
@@ -8,6 +12,8 @@
   <!--   <Navigation /> -->
   <!-- </aside> -->
   <main class="grow p-4">
-    <slot />
+    <QueryClientProvider client={data.queryClient}>
+      <slot />
+    </QueryClientProvider>
   </main>
 </div>

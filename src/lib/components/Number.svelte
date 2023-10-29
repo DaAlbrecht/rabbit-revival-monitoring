@@ -5,7 +5,7 @@
   $: color = (() => {
     switch (type) {
       case 'success':
-        return 'text-green-300';
+        return 'text-green-500';
       case 'error':
         return 'text-rose-500';
       case 'info':
