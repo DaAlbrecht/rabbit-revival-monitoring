@@ -4,19 +4,24 @@
   export let loading;
   export let error;
   export let data;
+  export let queue;
 </script>
 
 <div>
-  <GridItem title="Queues" {loading} {error}>
-    {#if data}
-      <Number number={data.message_stats.publish_details.rate} />
-    {/if}
+  <GridItem title="Queue" {loading} {error}>
+    <div
+      class="absolute inset-0 flex items-center justify-center pb-[25px] text-4xl font-semibold text-teal-500"
+    >
+      {queue.toUpperCase()}
+    </div>
   </GridItem>
 </div>
 <div>
   <GridItem title="Incoming messages / s" {loading} {error}>
-    {#if data}
+    {#if data && data.message_stats.publish_details}
       <Number number={data.message_stats.publish_details.rate} />
+    {:else}
+      <Number number={0} />
     {/if}
   </GridItem>
 </div>
@@ -28,24 +33,17 @@
   </GridItem>
 </div>
 <div>
-  <GridItem title="Unaknowledged messages" {loading} {error}>
-    {#if data}
-      <Number
-        type={data.queue_totals.messages_unacknowledged > 0 ? 'error' : 'success'}
-        number={data.queue_totals.messages_unacknowledged}
-      />
-    {/if}
+  <GridItem title="Failed messages" {loading} {error}>
+    <Number type="error" number={0} />
   </GridItem>
 </div>
 <div>
-  <GridItem title="Outgoing messages / s" {loading} {error}>
-    {#if data}
-      <Number number={data.message_stats.confirm_details.rate} />
-    {/if}
+  <GridItem title="Success rate" {loading} {error}>
+    <Number number={100} sign="%" />
   </GridItem>
 </div>
 <div>
-  <GridItem title="Consumers" {loading} {error}>
+  <GridItem title="Replayed messages" {loading} {error}>
     {#if data}
       <Number number={data.object_totals.consumers} />
     {/if}

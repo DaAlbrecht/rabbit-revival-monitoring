@@ -1,5 +1,6 @@
 <script lang="ts">
   export let number: number;
+  export let sign: string = '';
   export let type: 'success' | 'error' | 'info' = 'info';
 
   $: color = (() => {
@@ -18,4 +19,5 @@
   class={`absolute inset-0 flex items-center justify-center pb-[25px] text-4xl font-semibold ${color}`}
 >
   {number}
+  {sign}
 </div>
