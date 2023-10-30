@@ -31,6 +31,10 @@ const replaySingle = async (queue, messageId) => {
 };
 export const POST: RequestHandler = async ({ request }) => {
   const { queue, messageId } = await request.json();
-  const response = await replaySingle(queue, messageId);
-  return new Response(JSON.stringify(response));
+  try {
+    const response = await replaySingle(queue, messageId);
+    return new Response(JSON.stringify(response));
+  } catch (e) {
+    throw new Error(e);
+  }
 };

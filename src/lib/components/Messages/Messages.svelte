@@ -13,17 +13,21 @@
 
   async function replayMessage(message) {
     try {
-      await fetch('/api/messages/replay', {
+      const response = await fetch('/api/messages/replay', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ queue: queue, messageId: message.transaction.value })
       });
-      replayedData.push(message.transaction.value);
-      dispatch('replayed');
+      if (response.ok) {
+        console.log('Replayed message');
+        replayedData.push(message.transaction.value);
+        dispatch('replayed');
+      }
     } catch (e) {
       console.error(e);
+      return;
     }
   }
 
