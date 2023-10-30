@@ -40,7 +40,8 @@
 
   $: failedMessages = Math.round($messagesQuery.data?.length / 10);
   $: successRate = 100 - Math.round((failedMessages / $messagesQuery.data?.length) * 100);
-  let replayedMessages = 0;
+  let replayedMessages = new Map();
+  $: replayed = replayedMessages.get($selectedQueue) || 0;
 </script>
 
 <svelte:head>
@@ -76,7 +77,7 @@
               queue={$selectedQueue}
               {failedMessages}
               {successRate}
-              {replayedMessages}
+              replayedMessages={replayed}
               error={$query.isError ? $query.error.message : null}
               loading={$query.isLoading}
             />
@@ -85,7 +86,11 @@
             <Messages
               messages={$messagesQuery.data}
               queue={$selectedQueue}
-              on:replayed={() => (replayedMessages += 1)}
+              on:replayed={() =>
+                (replayedMessages = replayedMessages.set(
+                  $selectedQueue,
+                  (replayedMessages.get($selectedQueue) || 0) + 1
+                ))}
             />
           {:else}
             <div
