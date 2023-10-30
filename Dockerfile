@@ -1,16 +1,21 @@
-FROM node:18-alpine AS builder
+FROM node:20-slim AS builder
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app
 WORKDIR /app
-COPY package*.json .
-RUN npm ci
-COPY . .
-RUN npm run build
-RUN npm prune --production
 
-FROM node:18-alpine
+FROM builder AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+
+FROM builder AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm run build
+
+FROM node:20-alpine
 WORKDIR /app
-COPY --from=builder /app/build build/
-COPY --from=builder /app/node_modules node_modules/
+COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=build /app/build /app/build
 COPY package.json .
-EXPOSE 3000
 ENV NODE_ENV=production
 CMD [ "node", "build" ]

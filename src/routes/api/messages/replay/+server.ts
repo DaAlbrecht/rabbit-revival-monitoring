@@ -1,4 +1,4 @@
-import { PUBLIC_RABBIT_REVIVAL_URL } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 import type { RequestHandler } from './$types';
 
 //Replay single message /replay?transaction_id=transaction_id
@@ -8,7 +8,7 @@ import type { RequestHandler } from './$types';
 //curl localhost:3000/replay -H 'Content-Type: application/json'  -d '{"queue":"replay", "from":"", "to", ""}' | jq
 //TODO: IMPLEMENT THIS
 const replaySingle = async (queue, messageId) => {
-  const url = `${PUBLIC_RABBIT_REVIVAL_URL}/replay`;
+  const url = `${env.PUBLIC_RABBIT_REVIVAL_URL}/replay`;
   try {
     const res = await fetch(url, {
       headers: {

@@ -1,8 +1,8 @@
-import { PUBLIC_RABBIT_REVIVAL_URL } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 import type { RequestHandler } from './$types';
 
 const revivalFetch = async (endpoint: string) => {
-  const url = `${PUBLIC_RABBIT_REVIVAL_URL}/${endpoint}`;
+  const url = `${env.PUBLIC_RABBIT_REVIVAL_URL}/${endpoint}`;
   try {
     const res = await fetch(url);
     const json = await res.json();
