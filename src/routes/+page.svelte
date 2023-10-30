@@ -16,11 +16,7 @@
       queryFn: async () => {
         const response = await fetch('/api/metrics');
         if (!response.ok) {
-          intervalMs.set(10000);
           throw new Error('Metrics failed');
-        }
-        if ($intervalMs !== 7000) {
-          intervalMs.set(7000);
         }
         return response.json();
       },
@@ -34,11 +30,7 @@
       queryFn: async () => {
         const response = await fetch(`/api/messages?queue=${$selectedQueue}`);
         if (!response.ok) {
-          intervalMs.set(10000);
           throw new Error('Metrics failed');
-        }
-        if ($intervalMs !== 7000) {
-          intervalMs.set(7000);
         }
         return response.json();
       },
@@ -48,6 +40,7 @@
 
   $: failedMessages = Math.round($messagesQuery.data?.length / 10);
   $: successRate = 100 - Math.round((failedMessages / $messagesQuery.data?.length) * 100);
+  let replayedMessages = 0;
 </script>
 
 <svelte:head>
@@ -83,12 +76,17 @@
               queue={$selectedQueue}
               {failedMessages}
               {successRate}
+              {replayedMessages}
               error={$query.isError ? $query.error.message : null}
               loading={$query.isLoading}
             />
           </div>
           {#if $messagesQuery.isSuccess}
-            <Messages messages={$messagesQuery.data} queue={$selectedQueue} />
+            <Messages
+              messages={$messagesQuery.data}
+              queue={$selectedQueue}
+              on:replayed={() => (replayedMessages += 1)}
+            />
           {:else}
             <div
               class="dark:highlight-white/5 relative h-[calc(100%-250px)] overflow-hidden rounded-lg border-2 border-rose-300"

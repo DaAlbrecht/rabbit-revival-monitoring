@@ -7,6 +7,7 @@
   export let queue;
   export let failedMessages = 0;
   export let successRate = 100;
+  export let replayedMessages = 0;
 </script>
 
 <div>
@@ -46,8 +47,6 @@
 </div>
 <div>
   <GridItem title="Replayed messages" {loading} {error}>
-    {#if data}
-      <Number number={data.object_totals.consumers} />
-    {/if}
+    <Number number={replayedMessages} />
   </GridItem>
 </div>
