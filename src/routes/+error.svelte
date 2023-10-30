@@ -2,23 +2,21 @@
   import { page } from '$app/stores';
 </script>
 
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-gray-900">
   <div class="mx-auto max-w-screen-xl px-4 py-8 text-center lg:py-16">
     <h1
-      class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
+      class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl"
     >
       The system is down
     </h1>
-    <p
-      class="mb-8 text-lg font-normal text-gray-500 dark:text-gray-400 sm:px-16 lg:px-48 lg:text-xl"
-    >
+    <p class="mb-8 text-lg font-normal text-gray-400 sm:px-16 lg:px-48 lg:text-xl">
       The system is currently unavailable. Please try again later. This is most likely a temporary
       problem with the rabbitMQ services.
     </p>
     <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0">
       <a
         href="/"
-        class="inline-flex items-center justify-center rounded-lg bg-blue-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+        class="inline-flex items-center justify-center rounded-lg bg-blue-700 px-5 py-3 text-center text-base font-medium text-white focus:ring-blue-900"
       >
         Retry
         <svg
@@ -37,7 +35,7 @@
         </svg>
       </a>
       <span
-        class="inline-flex items-center justify-center rounded-lg border border-rose-800 px-5 py-3 text-center text-base font-medium text-rose-600 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+        class="inline-flex items-center justify-center rounded-lg border border-rose-800 px-5 py-3 text-center text-base font-medium text-rose-600 hover:bg-gray-700 focus:ring-gray-800"
       >
         Error: {$page.status}
         {$page.error.message}

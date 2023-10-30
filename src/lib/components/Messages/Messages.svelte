@@ -40,19 +40,19 @@
 </script>
 
 <div
-  class="dark:highlight-white/5 relative h-[calc(100%-250px)] overflow-hidden rounded-lg border-2 border-slate-50 dark:border-slate-400"
+  class="highlight-white/5 relative h-[calc(100%-250px)] overflow-hidden rounded-lg border-2 border-slate-400"
 >
   <div class="flex h-full flex-col">
     <div class="flex items-center justify-between p-4">
       <p
-        class="text-dashboards-xs text-neutral-850 mr-2 truncate font-medium leading-normal transition-all group-hover:mr-2 dark:text-white"
+        class="text-dashboards-xs mr-2 truncate font-medium leading-normal text-white transition-all group-hover:mr-2"
         title="Number of recent departures"
       >
         Messages
       </p>
     </div>
     <div class="relative flex h-[calc(100%-58px)] grow flex-col p-4">
-      <table class="mt-2 flex h-full w-full flex-col text-left dark:bg-slate-900">
+      <table class="mt-2 flex h-full w-full flex-col bg-slate-900 text-left">
         <thead
           class="w-[calc(100%-0.9em)] shrink-0 grow-0 basis-auto border-b border-white/10 text-sm leading-6 text-white"
         >

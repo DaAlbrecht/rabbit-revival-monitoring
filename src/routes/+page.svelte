@@ -49,8 +49,8 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section class="h-full text-neutral-300 dark:text-neutral-200">
-  <div class="flex h-full flex-col text-white transition duration-200 dark:text-neutral-200">
+<section class="h-full text-neutral-300">
+  <div class="flex h-full flex-col text-neutral-200 transition duration-200">
     <div class="flex h-[52px] justify-between">
       <!-- TODO: SELECT QUEUE -->
       <div>
@@ -59,7 +59,7 @@
       <div class="flex items-center gap-2">
         <select
           id="queues"
-          class="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          class="block rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
           bind:value={$selectedQueue}
         >
           {#each data.queues as queue}
@@ -94,7 +94,7 @@
             />
           {:else}
             <div
-              class="dark:highlight-white/5 relative h-[calc(100%-250px)] overflow-hidden rounded-lg border-2 border-rose-300"
+              class="highlight-white/5 relative h-[calc(100%-250px)] overflow-hidden rounded-lg border-2 border-rose-300"
             >
               <div class="flex h-full flex-col">
                 <div class="flex items-center justify-between p-4">
