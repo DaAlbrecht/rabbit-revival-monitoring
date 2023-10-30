@@ -1,11 +1,34 @@
 <script>
   export let messages;
+  export let queue;
   let statuses = {
     Completed: 'text-green-400 bg-green-400/10',
     Error: 'text-rose-400 bg-rose-400/10',
     Replayed: 'text-yellow-400 bg-yellow-400/10'
   };
   let replayedData = [];
+
+  async function replayMessage(message) {
+    try {
+      await fetch('/api/messages/replay', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ queue: queue, messageId: message.transaction.value })
+      });
+      replayedData.push(message.data);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function getStatus(message, i) {
+    if (replayedData.includes(message.data)) {
+      return 'Replayed';
+    }
+    return i % 10 ? 'Completed' : 'Error';
+  }
 </script>
 
 <div
@@ -58,20 +81,18 @@
               <td class="w-4/12 py-4 pr-8 text-sm leading-6 text-gray-400">{message.data}</td>
               <td class="w-1/12 py-4 pr-4 text-sm leading-6 sm:pr-8">
                 <div class="flex items-center justify-end gap-x-2 sm:justify-start">
-                  <div
-                    class={statuses[i % 10 ? 'Completed' : 'Error'] + ' flex-none rounded-full p-1'}
-                  >
+                  <div class={statuses[getStatus(message, i)] + ' flex-none rounded-full p-1'}>
                     <div class="h-2 w-2 rounded-full bg-current" />
                   </div>
-                  <div class="hidden text-white sm:block">{i % 10 ? 'Completed' : 'Error'}</div>
+                  <div class="hidden text-white sm:block">{getStatus(message, i)}</div>
                 </div>
               </td>
               <td class="w-2/12 py-4 pr-8 text-sm leading-6 text-gray-400">{message.timestamp}</td>
               <td class="w-1/12 py-4 pr-8 text-sm leading-6 text-gray-400"
-                ><a
-                  href="#"
+                ><button
+                  on:click={() => replayMessage(message)}
                   class="rounded bg-rose-400 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
-                  >Replay<span class="sr-only">Replay</span></a
+                  >Replay<span class="sr-only">Replay</span></button
                 ></td
               >
             </tr>

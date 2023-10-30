@@ -27,7 +27,7 @@ export const load: PageLoad = async ({ parent, fetch }) => {
   }
 
   await queryClient.prefetchQuery({
-    queryKey: ['messages'],
+    queryKey: ['messages', queue.name],
     queryFn: async () => {
       const response = await fetch(`/api/messages?queue=${queue.name}`);
       if (response.ok) {
