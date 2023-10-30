@@ -30,7 +30,7 @@ services:
     build: .
     container_name: replay-monitoring
     environment:
-      - RABBIT_MANAGEMENT_URL=http://localhost:15672
-      - PUBLIC_RABBIT_REVIVAL_URL=http://localhost:3002
+      - RABBIT_MANAGEMENT_URL=http://rabbitmq:15672
+      - PUBLIC_RABBIT_REVIVAL_URL=http://rabbit-revival:3002
       - RABBIT_USERNAME=guest
       - RABBIT_PASSwORD=guest
