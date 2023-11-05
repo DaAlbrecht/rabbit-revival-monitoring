@@ -38,6 +38,10 @@
     }))
   );
 
+  async function publishMore() {
+    await fetch(`/api/publish?queue=${$selectedQueue}`);
+  }
+
   $: failedMessages = Math.round($messagesQuery.data?.length / 10);
   $: successRate = 100 - Math.round((failedMessages / $messagesQuery.data?.length) * 100);
   let replayedMessages = new Map();
@@ -57,6 +61,12 @@
         <p>RabbitRevival - Monitoring / V1.0</p>
       </div>
       <div class="flex items-center gap-2">
+        <button
+          on:click={publishMore}
+          type="button"
+          class="mr-2 rounded-lg border-gray-700 bg-gray-800 px-5 py-2.5 text-sm font-medium hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-700"
+          >Publish More</button
+        >
         <select
           id="queues"
           class="block rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
