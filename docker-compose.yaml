@@ -32,7 +32,8 @@ services:
     environment:
       - PUBLIC_RABBIT_MANAGEMENT_URL=http://rabbitmq:15672
       - PUBLIC_RABBIT_REVIVAL_URL=http://rabbit-revival:3000
+      - PUBLIC_RABBIT_PUBLISH_URL=http://demo-publisher:3000
       - RABBIT_USERNAME=guest
-      - RABBIT_PASSwORD=guest
+      - RABBIT_PASSWORD=guest
     ports:
       - '3000:3000'
